@@ -1,0 +1,9 @@
+main{
+    width: 80%;
+    padding: 2%;
+    @include flex(flex, column, nowrap, center , center);
+
+    @include responsive() {
+      width : 100%
+    }
+}

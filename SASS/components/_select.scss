@@ -1,0 +1,10 @@
+#selectType, #selectOrder, .optionCharacters, .optionLocations {
+    @include marginR-L4 ;
+    @include borderInput;
+ 
+    @include responsive(530px){
+     @include marginR-L0;
+     @include marginT-B3;
+    }
+ }
+

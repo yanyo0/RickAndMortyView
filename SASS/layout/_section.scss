@@ -1,0 +1,58 @@
+section{
+    width: 100%;
+    padding: 1%;
+    @include borderInput;
+    display: flex;
+    flex-direction: column;
+}
+
+#boxMoodLight {
+    margin-bottom: 4%;
+    width: 100%;
+    @include flex(flex, row, nowrap, flex-end, center);
+   
+}
+
+.titleSearch{
+    @include responsive(1140px){
+     text-align: center;
+     margin-bottom: 3%;
+    }
+}
+
+.boxButton {
+    align-self: center;
+    width: 30%;
+    margin-top: 8%;
+    margin-bottom: 2%;
+    @include flex(flex, row, nowrap, space-between, center);
+    @include responsive(1360px){
+        width: 40%;
+    };
+    @include responsive(994px){
+        width: 50%;
+    };
+    @include responsive(790px){
+        width: 60%;
+    };
+    @include responsive(675px){
+        width: 70%;
+    };
+    @include responsive(566px){
+        width: 100%;
+    };
+
+}
+
+.viewSeasons {
+    width: 100%;
+    margin-top: 1%;
+    padding: 1%;
+    
+    @include flex(flex, row, wrap, space-around, flex-start );
+
+    @include responsive(){
+        justify-content: center;
+    }
+}
+

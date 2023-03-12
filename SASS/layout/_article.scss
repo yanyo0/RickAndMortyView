@@ -1,0 +1,33 @@
+.errors{
+    padding: 2%;
+    width: 100%;
+    height: auto;
+    @include flex(flex, column, nowrap, space-between, center);
+    .fa-circle-exclamation{
+        color: $colorSecondary;
+        font-size: 250%;
+    }
+    p{
+        margin-top: 4%;
+        font-size: 90% ;
+        color: $colorSecondary;
+    }
+}
+
+.season{
+    width: 100%;
+    padding: 1%;
+    @include flex(flex, column, nowrap, space-between, center);
+    div img{
+        width: 350px;
+        height: 450px;
+        @include responsive(){
+            width: 250px;
+            height: 350px;
+        }
+    }
+    .table{
+        width: 95%;
+    }
+   
+}

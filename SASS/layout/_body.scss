@@ -1,0 +1,4 @@
+body{
+    width: 100vw;
+    @include flex(flex, column, nowrap, center , center)
+}

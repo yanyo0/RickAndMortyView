@@ -1,0 +1,14 @@
+footer{
+    width: 100%;
+    background-color: #030303;
+    @include flex(flex, row, nowrap, center, center);
+    height: 80px;
+    border-top: 1px solid $colorSecondary;
+    box-shadow:  0px -3px 10px #29292c;
+    
+
+    .imgLogo {
+        width: 20px;
+        padding-top: 2%;
+    }
+}

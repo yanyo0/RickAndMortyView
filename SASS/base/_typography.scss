@@ -1,0 +1,26 @@
+* {
+    font-family: 'Inconsolata', monospace;
+    font-size: 101%;
+    color: $colorPrimary;
+}
+
+.infoBox-viewCharacter{
+
+    h3 {
+      font-size: 150%;
+      color: $colorSecondary;
+    }   
+  
+  }
+
+footer{
+    .fa-heart{
+        color: $colorSecondary;
+    }
+    p{
+        span{
+            font-family: 'Warnes', cursive;
+            color: $colorSecondary;
+        }
+    }
+}

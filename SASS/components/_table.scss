@@ -1,0 +1,42 @@
+table{
+    width: 100%;
+    margin-top: 6%;
+    text-align: center;
+    border-collapse: collapse;
+    @include borderInput;
+
+   th, td {
+    padding: 13px;
+    font-size: 90%;
+    
+   }
+   thead tr th{
+    color: $colorSecondary;
+    background-color: rgba($color: #202020, $alpha: 0.3) ;
+   }
+   .view{
+    color: $colorSecondary;
+    cursor: pointer;
+    text-decoration: underline;
+    text-underline-offset: 8px;
+   }
+   @include responsive(){
+    width: 100%;
+    }
+  @include responsive(){
+   font-size: 70%;
+   th, td {
+    padding: 9px;
+    }    }
+  @include responsive(415px){
+    font-size: 65%;
+    th, td {
+        padding: 5px;
+     }    }    
+
+}
+.season {
+  table{
+    width: 99%;
+  }
+}

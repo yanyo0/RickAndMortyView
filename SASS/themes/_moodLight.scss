@@ -1,0 +1,46 @@
+.moodLight {
+    * {
+    background-color: $colorPrimary;
+    color: $backgroundColor;
+    }
+    header{
+        div{
+        opacity: 1;
+        }
+    }
+
+    .cardCharacter{
+        h5{
+            background-color: #535355;
+        }
+    }
+
+    .modalCharacter{
+        background-color: rgba($color: $colorPrimary, $alpha: 0.7);
+    }
+    .viewIndividualCharacter{
+        background-color: rgba($color: $colorPrimary, $alpha: 0.1);
+    
+    }
+    .episode-viewCharacter{
+        background-color: rgba($color: $colorPrimary, $alpha: 0.1);
+    .result_episode-viewCharacter{
+
+        &,h2, p {
+           background-color: rgba($color: $colorPrimary, $alpha: 0.1);
+            color: black;
+      }
+   }}
+   .cardLocation{
+    div{
+        h3{
+            background-color: #535355;
+        }
+    }
+    table{
+        th{
+            background-color: $colorPrimary;
+        }
+    }
+   }
+}

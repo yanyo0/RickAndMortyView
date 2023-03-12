@@ -1,0 +1,62 @@
+.containerSearch {
+    @include flex(flex, row, nowrap, space-between, center );
+
+    @include responsive(1140px){
+    @include flex(flex, column, nowrap, center, center ) ;
+    }
+    
+
+    .searchBox{
+
+        width: 50%;
+        @include flex(flex, row, nowrap, flex-start, center );
+
+        @include responsive(885px) {
+            width: 100%;
+            @include flex(flex, row, nowrap, center, center );
+        }
+    }
+
+    .search-selectBox{
+        width: 50%;
+        @include flex(flex, row, nowrap, flex-end, center );
+
+        @include responsive(1140px){
+            margin-top: 5%;
+            width: 100%;
+            @include flex(flex, row, nowrap, center, center );
+        }
+
+        @include responsive(530px){
+            @include flex(flex, column, nowrap, center, center );
+        }
+
+        .selectBox{
+            width: 50%;
+            @include flex(flex, column, nowrap, space-between, flex-end);
+            padding: 2%;
+            @include responsive(530px){
+                height: 130px;
+                @include flex(flex, column, nowrap, center, center );
+            }
+             
+            .selectType{
+                width: 100%;
+                @include flex(flex, row, nowrap, space-between, center);
+                @include responsive(530px){
+                    @include flex(flex, column, nowrap, center, center );
+                }
+                label {
+                    @include responsive(530px){
+                     margin-bottom: 3%;
+                    }
+                }
+            }
+        
+            .optionCharacters, .optionLocations{
+                margin-top: 3%;
+                width: 60%;
+            }
+        }
+    }
+}

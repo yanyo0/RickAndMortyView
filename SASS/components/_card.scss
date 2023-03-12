@@ -1,0 +1,138 @@
+.cardSeason {
+    @include card(100% /3 - 2 * 2% , 4%, 1%, 3%, 1%) ;
+    
+    img{
+        width: 100%;
+        height: 350px;
+        @include box-shadowCard;
+        transform: translateY(0%);
+        transition: 0.3s;
+    }
+
+    h5{
+        margin-top: 7%;
+    }
+
+    &:hover img{
+        transform: translateY(-3%);
+    }
+
+    &:hover h5{
+        color: $colorSecondary;
+    }
+
+    @include responsive(1200px){
+        @include card(80% /2 - 2 * 2% , 4%, 1%, 3%, 1%) ;
+    }
+    @include responsive(680px){
+        @include card(80% /1 - 2 * 2% , 4%, 1%, 3%, 1%) ;
+    }
+}
+
+
+.cardCharacter {
+    @include card(100% /6 - 2 * 2% , 3%, 1%, 0%, 1%) ;
+
+    
+    .characterImg {
+        overflow: hidden;
+      }
+
+    img{
+        width: 100%;
+        height: 250px;
+        transition: 0.4s;
+    }
+    
+    h5{
+        text-align: center;
+        padding-top: 10%;
+        font-size: 90%;
+        height: 70px;
+        background-color: #18181b;
+        border-top: 5px solid $colorSecondary;
+    }
+
+    &:hover img {
+        transform: scale(1.1);
+    }
+
+    &:hover h5 {
+        background-color: $colorSecondary;
+        color: $backgroundColor;
+    }
+
+    @include responsive(1200px){
+        @include card(100% /5 - 2 * 2% , 4%, 1%, 3%, 1%) ;
+    }
+
+    @include responsive(1000px){
+        @include card(100% /4 - 2 * 2% , 4%, 1%, 3%, 1%) ;
+    }
+
+    @include responsive(800px){
+        @include card(100% /3 - 2 * 2% , 4%, 1%, 3%, 1%) ;
+    }
+    @include responsive(600px){
+        @include card(100% /2 - 2 * 2% , 4%, 1%, 3%, 1%) ;
+    }
+    @include responsive(400px){
+        @include card(80% /1 - 2 * 2% , 4%, 1%, 3%, 1%) ;
+    }
+   
+}
+
+
+.cardLocations {
+   
+   @include flex(flex, column, nowrap, space-between, center);
+   width: 90%;
+   padding: 2%;
+   @include responsive(750px){
+    width: 100%;
+    margin-top: 5%;
+    }
+
+   div{
+        width: 90%;
+
+        @include responsive(750px){
+        width: 100%;
+        }
+    
+        h3{
+            padding: 1%;
+            font-size: 120%;
+            border: 1px solid $colorSecondary;
+            border-radius: 5px 5px 0px 0px;
+            color: $colorSecondary;
+            background-color: rgba($color: #202020, $alpha: 0.3) ;
+            @include responsive(){
+                font-size: 100%;
+            }
+        }
+        table{
+            margin: 0%;
+            th{
+                background-color: $backgroundColor;
+            }
+            tbody{
+                background-color: rgba($color: #202020, $alpha: 0.3) ;
+            }
+
+            @include responsive(){
+                width: 100%;
+                }
+            @include responsive(){
+               font-size: 75%;
+               th, td {
+                padding: 9px;
+                } }
+            @include responsive(415px){
+                font-size: 65%;
+                th, td {
+                    padding: 5px;
+                 } }    
+        }
+      }
+}

@@ -1,0 +1,47 @@
+@mixin marginR-L4 {
+    margin-left: 4%;
+    margin-right: 4%;
+}
+
+@mixin marginR-L0 {
+    margin-left: 0%;
+    margin-right: 0%;
+}
+
+@mixin marginT-B3{
+    margin-top: 3%;
+    margin-bottom: 3%;
+}
+
+@mixin borderInput {
+    padding: 1%;
+    border: 1px solid $colorSecondary;
+    border-radius: 5px;
+}
+
+@mixin card($width, $marginT:1%, $marginR:1%, $marginB:1%, $marginL:1%) {
+    width: $width;
+    margin: $marginT $marginR $marginB $marginL;
+    
+}
+
+@mixin box-shadowCard {
+    box-shadow: 5px 5px 10px #3e3e41;
+}
+
+
+// GENERALS 
+
+@mixin flex($dis, $direction, $wrap , $just, $aling ) {
+    display: $dis;
+    flex-flow: $direction $wrap;
+    justify-content: $just;
+    align-items: $aling;
+}
+
+
+@mixin responsive($measure:640px) {
+    @media (max-width: $measure){
+        @content
+    }
+}

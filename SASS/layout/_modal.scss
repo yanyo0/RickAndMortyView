@@ -1,0 +1,36 @@
+.modal{
+    @include flex(flex,column, nowrap, space-between, center);
+    height: auto;
+    width: 70%;
+    background-color: rgba(17, 17, 17, 0.749);
+    padding: 2%;
+    border-radius: 15px;
+    position: fixed;
+    @include borderInput;
+    
+    
+  }
+
+  .modalCharacters{
+    z-index: 2;
+    left: 15vw;
+    top: 10vh;
+  }
+
+  .modalEpisodes, .modalLocations{
+    top: 5vh;
+    z-index: 1;
+    left: 5vw;
+    width: 85%;
+    height: 85%;
+    text-align: center;
+
+    .paint-modalEpisodes, .paint-modalLocation{
+      width: 90%;
+      padding: 2%;
+      margin-top: 2%;
+      @include flex(flex,row, wrap, space-between, center);
+      overflow: scroll;
+      
+    }
+  }

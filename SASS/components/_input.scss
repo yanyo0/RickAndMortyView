@@ -1,0 +1,24 @@
+#search {
+    width: 80%;
+    margin-top: 2%;
+    margin-left: 3%;
+    border: none;
+    border-bottom: 2px solid $colorSecondary;
+}
+
+#numPage-characters, #numPage-episodes, #numPage-locations {
+    width: 45px;
+    height: 35px;
+    text-align: center;
+    font-size: 110%;
+    @include borderInput;
+    @include responsive(566px){
+        width: 30px;
+        height: 30px;
+        font-size: 80%;
+    }
+}
+
+#numPage{
+    margin-right: 2%;
+}
