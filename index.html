@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rick And Morty view !</title>
+</head>
+<body>
+
+    <header>
+        <div>
+          <img src="./img/RAMLogo-removebg.png" alt="" />
+        </div>
+    </header>
+
+
+    <main>
+        <section>
+
+            <div id="boxMoodLight">
+                <button type="button" id="btnMoodLight">
+                  <span><i class="fa-solid fa-moon"></i></span>
+                  <span><i class="fa-solid fa-sun"></i></span>
+                </button>
+            </div>
+
+            <div>
+                <div>
+                    <h3 class="titleSearch">Búsqueda</h3>
+                </div>
+
+                <div>
+                    <form action="">
+
+                        <div class="searchBox">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <input id="search" type="text" placeholder="Ingresá tu búsqueda" />
+                        </div>
+
+                        <div class="search-selectBox">
+                            <div class="selectBox">
+                                <div class="selectType">
+                                    <label for="">TIPO</label>
+                                    <select name="" id="selectType">
+                                      <option value="characters">PERSONAJES</option>
+                                      <option value="episode">EPISODIOS</option>
+                                      <option value="locations">LOCALIZACIÓN</option>
+                                    </select>
+                                </div>
+
+                                <select name="" class="optionCharacters">
+                                    <option value="all">Todos</option>
+                                    <option value="alive">Vivo</option>
+                                    <option value="dead">Muerto</option>
+                                    <option value="unknown">Desconocido</option>
+                                </select>
+
+                                <select name="" class="display optionLocations">
+                                    <option value="all">Todos</option>
+                                </select>
+                        </div>
+
+                        <label for="">ORDEN</label>
+                        <select name="" id="selectOrder" disabled>
+                          <option value="a-z">A/Z</option>
+                          <option value="z-a">Z/A</option>
+                        </select>
+
+                        <!-- <button id="btnSerch" type="submit">BUSCAR</button> -->
+
+                    </form>
+                </div>
+            </div>
+
+        </section> 
+
+    <!-- ---  SECTION CHARACTERS  ---  -->
+
+        <section>
+
+            <div class="result-characters">
+                <h2>Resultados</h2>
+                <p>23456 resultados</p>
+            </div>
+          
+            <article class="errors errors-characters">
+                <i class="fa-solid fa-circle-exclamation"></i>
+                <p>No se pudo mostrar el contenido!</p> 
+                <p>Intente cargar la pagina nuevamente</p>
+            </article>
+
+            <div id="view-charactersBox">
+           
+            </div>
+
+            <div class="boxButton boxButton-characters">
+                <button id="firstPage-characters" type="button"><<</button>
+                <button id="previousPage-characters" type="button"><</button>
+                <input id="numPage-characters" type="text">
+                <p id="countPages-characters"></p>
+                <button id="nextPage-characters" type="button">></button>
+                <button id="lastPage-characters" type="button">>></button>
+            </div>
+
+
+            <article class="modal modalCharacters display">
+                <button type="button" class="btn_closeModal btnCloseCharacters"> <strong>X</strong> </button>
+                <div class="paint-modalCharacters">
+        
+                </div>
+            </article>
+
+        </section>
+
+    <!-- ---  SECTION EPISODES  ---  -->
+
+        <section>
+
+            <div class="result-episodes">
+                <h2>Resultados</h2>
+                <p>23456 resultados</p>
+            </div>
+          
+            <article class="errors errors-episodes">
+                <i class="fa-solid fa-circle-exclamation"></i>
+                <p>No se pudo mostrar el contenido!</p> 
+                <p>Intente cargar la pagina nuevamente</p>
+            </article>
+
+            <div class="viewSeasons">
+
+                <div class="cardSeason cardSeason1">
+                    <img src="./img/season1.jpg" alt="Portada season 1" />
+                    <h5>Season 1</h5>
+                </div>
+      
+                <div class="cardSeason cardSeason2">
+                    <img src="./img/season2.png" alt="Portada season 2" />
+                    <h5>Season 2</h5>
+                </div>
+      
+                <div class="cardSeason cardSeason3">
+                    <img src="./img/season3.png" alt="Portada season 3" />
+                    <h5>Season 3</h5>
+                </div>
+      
+                <div class="cardSeason cardSeason4">
+                    <img src="./img/season4.jpg" alt="Portada season 4" />
+                    <h5>Season 4</h5>
+                </div>
+      
+                <div class="cardSeason cardSeason5">
+                    <img src="./img/season_5.jpg" alt="Portada season 5" />
+                    <h5>Season 5</h5>
+                </div>
+      
+                <div class="cardSeason cardSeason6">
+                    <img src="./img/season_6.jpg" alt="Portada season 6" />
+                    <h5>Season 6</h5>
+                </div>
+
+            </div>
+            
+            <div id="episodes-viewSeasons">
+
+                <article class="page-Season1">
+
+                    <div class="season">
+                        <div>
+                            <img src="./img/season1.jpg" alt="Portada season 1">
+                        </div>
+                        <div>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Nombre</th>
+                                        <th>Creado</th>
+                                        <th>Fecha emisión</th>
+                                        <th>Episodio</th>
+                                        <th>Personajes</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="season1">
+                                   //PAINT EPIDODES
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </article>
+
+                <article class="page-Season2">
+
+                    <div class="season">
+                        <div>
+                            <img src="./img/season2.png" alt="Portada season 2">
+                        </div>
+                        <div>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Nombre</th>
+                                        <th>Creado</th>
+                                        <th>Fecha emisión</th>
+                                        <th>Episodio</th>
+                                        <th>Personajes</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="season2">
+                                   //PAINT EPIDODES
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </article>
+
+                <article class="page-Season3">
+
+                    <div class="season">
+                        <div>
+                            <img src="./img/season3.png" alt="Portada season 3">
+                        </div>
+                        <div>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Nombre</th>
+                                        <th>Creado</th>
+                                        <th>Fecha emisión</th>
+                                        <th>Episodio</th>
+                                        <th>Personajes</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="season3">
+                                   //PAINT EPIDODES
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </article>
+
+                <article class="page-Season4">
+
+                    <div class="season">
+                        <div>
+                            <img src="./img/season4.jpg" alt="Portada season 4">
+                        </div>
+                        <div>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Nombre</th>
+                                        <th>Creado</th>
+                                        <th>Fecha emisión</th>
+                                        <th>Episodio</th>
+                                        <th>Personajes</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="season4">
+                                   //PAINT EPIDODES
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>     
+
+                </article>
+
+                <article class="page-Season5">
+
+                    <div class="season">
+                        <div>
+                            <img src="./img//season_5.jpg" alt="Portada season 5">
+                        </div>
+                        <div>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Nombre</th>
+                                        <th>Creado</th>
+                                        <th>Fecha emisión</th>
+                                        <th>Episodio</th>
+                                        <th>Personajes</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="season5">
+                                   //PAINT EPIDODES
+                                </tbody>
+                            </table>
+                        </div>
+                    </div> 
+
+                </article>
+                
+                <article class="page-Season6">
+
+                    <div class="season">
+                        <div>
+                            <img src="./img/season_6.jpg" alt="Portada season 6">
+                        </div>
+                        <div>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Nombre</th>
+                                        <th>Creado</th>
+                                        <th>Fecha emisión</th>
+                                        <th>Episodio</th>
+                                        <th>Personajes</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="season6">
+                                   //PAINT EPIDODES
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </article>
+
+            </div>
+
+            <div class="boxButton boxButton-episodes">
+                <button id="firstPage-episodes" type="button"><<</button>
+                <button id="previousPage-episodes" type="button"><</button>
+                <input id="numPage-episodes" type="text">
+                <p id="countPages-episodes"></p>
+                <button id="nextPage-episodes" type="button">></button>
+                <button id="lastPage-episodes" type="button">>></button>
+            </div>
+
+            <article class="modal modalEpisodes display">
+                <button type="button" class="btn_closeModal btnCloseEpisodes"> <strong>X</strong> </button>
+                <div class="paint-modalEpisodes">
+                </div>
+            </article>
+
+        </section>
+
+    <!-- ---  SECTION LOCATIONS  ---  -->
+
+        <section>
+
+            <div class="result-locations">
+                <h2>Resultados</h2>
+                <p>23456 resultados</p>
+            </div>
+
+            <article class="errors errors-locations">
+                <i class="fa-solid fa-circle-exclamation"></i>
+                <p>No se pudo mostrar el contenido!</p> 
+                <p>Intente cargar la pagina nuevamente</p>
+            </article>
+            
+            <div id="view-locationsBox">
+
+            </div>
+
+            <div class="boxButton boxButton-locations">
+                <button id="firstPage-locations" type="button"><<</button>
+                <button id="previousPage-locations" type="button"><</button>
+                <input id="numPage-locations" type="text">
+                <p id="countPages-locations"></p>
+                <button id="nextPage-locations" type="button">></button>
+                <button id="lastPage-locations" type="button">>></button>
+            </div>
+
+            <article class="modal modalLocations display">
+                <button type="button" class="btn_closeModal btnCloseLocation "> <strong>X</strong> </button>
+                <div class="paint-modalLocation">
+                </div>
+            </article>
+
+        </section>
+    
+
+    </main>
+
+    <footer>
+        <p>
+          Hecho con <i class="fa-solid fa-heart"></i> por <span>Yanyo0 </span>
+          <img class="imgLogo" src="./img/logo.png" alt="nariz de chanco" />
+        </p>
+    </footer>
+    
+</body>
+</html>
