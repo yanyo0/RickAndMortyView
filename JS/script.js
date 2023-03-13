@@ -72,6 +72,7 @@ window.addEventListener("load", (e) => {
     const $season6Pages = $(".page-Season6");
     const $modalEpisodes = $(".modalEpisodes");
     const $paintModalEpisodes = $(".paint-modalEpisodes");
+    const $btnCloseEpisodes = $(".btnCloseEpisodes")
     const $numPageEpisodes = $("#numPage-episodes")
 
     let arrayEpisodes = [];
@@ -401,7 +402,6 @@ const desingEpisode = (episode) => {
        const dataArray = await Promise.all(info.map(ep => ep.json()))
  
        dataArray.forEach( page => {
-        console.log(page)
           for(const elem of page.results) {
              paintEpisodes(elem)
              }})
@@ -627,5 +627,10 @@ const desingEpisode = (episode) => {
     $numPageEpisodes.addEventListener("change", (e) => {
         paginationEpisodes();
     })
-  
+
+    // -- Modal Episode --
+
+    $btnCloseEpisodes.addEventListener("click", (e) => {
+        $modalEpisodes.classList.add("display")
+    })
 })
