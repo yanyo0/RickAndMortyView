@@ -466,7 +466,7 @@ section {
   }
 }
 
-.viewSeasons {
+.viewSeasons, #view-charactersBox {
   width: 100%;
   margin-top: 1%;
   padding: 1%;
@@ -476,7 +476,7 @@ section {
   align-items: flex-start;
 }
 @media (max-width: 640px) {
-  .viewSeasons {
+  .viewSeasons, #view-charactersBox {
     justify-content: center;
   }
 }
@@ -498,6 +498,70 @@ section {
   margin-top: 4%;
   font-size: 90%;
   color: #84cc16;
+}
+
+.paint-modalCharacter {
+  width: 95%;
+  padding: 2%;
+  margin-top: 3%;
+  padding: 1%;
+  border: 1px solid #84cc16;
+  border-radius: 5px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: flex-start;
+}
+.paint-modalCharacter .infoBox-viewCharacter {
+  padding: 1%;
+  width: 60%;
+  height: auto;
+  margin-left: 5%;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-around;
+  align-items: flex-start;
+}
+.paint-modalCharacter .infoBox-viewCharacter div {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+.paint-modalCharacter .infoBox-viewCharacter .itemsCharacters {
+  width: 100%;
+  margin-top: 4%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+.paint-modalCharacter .infoBox-viewCharacter .itemsCharacters p {
+  margin-left: 3%;
+}
+@media (max-width: 800px) {
+  .paint-modalCharacter {
+    width: 100%;
+  }
+}
+@media (max-width: 900px) {
+  .paint-modalCharacter {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+  }
+  .paint-modalCharacter div {
+    text-align: center;
+  }
+  .paint-modalCharacter div .img-viewCharacter {
+    width: 80%;
+    margin-top: 5%;
+  }
+  .paint-modalCharacter .infoBox-viewCharacter {
+    width: 90%;
+    margin-top: 5%;
+  }
 }
 
 .season {
