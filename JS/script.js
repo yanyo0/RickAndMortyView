@@ -630,6 +630,7 @@ const desingEpisode = (episode) => {
 
     // -- Modal Episode --
 
+    
     $btnCloseEpisodes.addEventListener("click", (e) => {
         $modalEpisodes.classList.add("display")
     })
