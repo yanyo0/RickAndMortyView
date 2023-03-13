@@ -680,4 +680,40 @@ footer .imgLogo {
   display: none;
 }
 
+.moodLight {
+  background-color: #d4d4d8;
+}
+.moodLight * {
+  background-color: #d4d4d8;
+  color: black;
+}
+.moodLight header div {
+  opacity: 1;
+}
+.moodLight header div img {
+  background-color: transparent;
+}
+.moodLight .cardCharacter h5 {
+  background-color: #535355;
+}
+.moodLight .modalCharacter {
+  background-color: rgba(212, 212, 216, 0.7);
+}
+.moodLight .viewIndividualCharacter {
+  background-color: rgba(212, 212, 216, 0.1);
+}
+.moodLight .episode-viewCharacter {
+  background-color: rgba(212, 212, 216, 0.1);
+}
+.moodLight .episode-viewCharacter .result_episode-viewCharacter, .moodLight .episode-viewCharacter .result_episode-viewCharacter h2, .moodLight .episode-viewCharacter .result_episode-viewCharacter p {
+  background-color: rgba(212, 212, 216, 0.1);
+  color: black;
+}
+.moodLight .cardLocation div h3 {
+  background-color: #535355;
+}
+.moodLight .cardLocation table th {
+  background-color: #d4d4d8;
+}
+
 /*# sourceMappingURL=styles.css.map */

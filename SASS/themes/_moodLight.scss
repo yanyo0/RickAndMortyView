@@ -1,13 +1,19 @@
 .moodLight {
+    
     * {
     background-color: $colorPrimary;
     color: $backgroundColor;
     }
+    background-color: $colorPrimary;
     header{
         div{
         opacity: 1;
+        img{
+            background-color: transparent;
+        }
         }
     }
+    
 
     .cardCharacter{
         h5{
