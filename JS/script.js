@@ -73,6 +73,7 @@ window.addEventListener("load", (e) => {
     const $modalEpisodes = $(".modalEpisodes");
     const $paintModalEpisodes = $(".paint-modalEpisodes");
     const $numPageEpisodes = $("#numPage-episodes")
+    const $btnCloseEpisodes = $(".btnCloseEpisodes")
 
     let arrayEpisodes = [];
     let pagesEpisode = 1
@@ -424,7 +425,6 @@ const desingEpisode = (episode) => {
        const dataArray = await Promise.all(info.map(ep => ep.json()))
  
        dataArray.forEach( page => {
-        console.log(page)
           for(const elem of page.results) {
              paintEpisodes(elem)
              }})
@@ -922,6 +922,12 @@ const inputPaginationLocations = (value) => {
   
     $numPageEpisodes.addEventListener("change", (e) => {
         paginationEpisodes();
+    })
+
+    // Modal episode
+
+    $btnCloseEpisodes.addEventListener("click", (e) => {
+     $modalEpisodes.classList.add("display")
     })
 
     // --- SECTION LOCATION  ---
