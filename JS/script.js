@@ -81,9 +81,32 @@ window.addEventListener("load", (e) => {
 
       // --Section Locations--
  
-    const $sectionLocations = $(".sectionLocations")
- 
- 
+    const $sectionLocations = $(".sectionLocations");
+    const $viewLocationsBox = $("#view-locationsBox");
+    const $errorsLocations = $(".errors-locations");
+    const $modalLocations = $(".modalLocations");
+    const $paintModalLocation = $(".paint-modalLocation");
+    const $btnCloseLocation = $(".btnCloseLocation");
+
+    let arrayLocation = [];
+    let numInitLocation = 0
+    let numFinalLocation = numInitLocation + 9
+    let elementResto = 0
+    let numPagesLocations = 1;
+    let totalElementsLocation 
+    let arrayOrder = []
+    let locationsInfo = [] 
+    let countLocations
+    let searchLocation =""
+    let pagesLocation = ""
+    let location
+
+    // --Location pages--
+   const $firstPageLocations = $("#firstPage-locations");
+   const $previousPageLocations = $("#previousPage-locations");
+   const $numPageLocations = $("#numPage-locations");
+   const $nextPageLocations = $("#nextPage-locations");
+   const $lastPageLocations = $("#lastPage-locations");
  
  // ----- FUNTIONS -----
 
@@ -510,13 +533,281 @@ const desingEpisode = (episode) => {
  
  const paginationEpisodes = () => {
     pagesEpisode = Number($numPageEpisodes.value);
- 
     episodePagesClassList();
  }
+
+
+
+//  ---  SECTION LOCATIONS  ---
+
+$numPageLocations.value = numPagesLocations;
+
+const sortAZ = (array) => {
+  return  array.sort((a,b) => {
+        if(a.name > b.name){
+         return 1
+        }
+        if(a.name < b.name){
+         return -1
+        }
+        return 0;
+     })
+}
+
+const sortZA = (array) => {
+    return  array.sort((a,b) => {
+          if(a.name < b.name){
+           return 1
+          }
+          if(a.name > b.name){
+           return -1
+          }
+          return 0;
+       })
+  }
+
+
+
+
+const addOptionSelectLocation = (elem) => {
+   $optionLocations.innerHTML += `
+         <option value="${elem.url}">${elem.name}</option>
+         `
+}
+
+
+
+const paintCardLocation = (elem) => {
+   $viewLocationsBox.innerHTML += `
+         <div class="cardLocation">
+          <div>
+          <h3>${elem.name}</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Tipo</th>
+                <th>Dimensión</th>
+                <th>Creado</th>
+                <th>Residentes</th>
+              </tr>
+          </thead>
+
+         <tbody>
+         <tr>
+         <td>${elem.type}</td>
+         <td>${elem.dimension}</td>
+         <td>${elem.created}</td>
+         <td class="view viewLocation" id="location${elem.id}">Ver +</td>
+          </tr>
+             
+         </tbody>
+        </table>
+        </div>
+
+        </div>
+         `
+}
+
+
+
+const loadDataCharactersLocation = async() => {
+   try{
+      const respose = await fetch(`https://rickandmortyapi.com/api/location/${location}`)
+      const data = await respose.json()
+      
+      const arrayFetch = data.residents.map(character => fetch(character))
+      
+      const promeseAll = await Promise.all(arrayFetch)
+      
+      const info = await Promise.all(promeseAll.map(character =>character.json()))
+      
+      paintCharacters(info, $paintModalLocation);
+
+   }
+   catch(error){
+     $errorsLocations.classList.remove("display")
+   }
+}
+
+
+ const paintPages = (totalElements, array) => {
+   totalElementsLocation = totalElements
+   elementResto = totalElementsLocation  % 10;
+
+    for(i = `${numInitLocation}`; i <= `${numFinalLocation}` ; i++){
+       paintCardLocation(array[i])
+      }
+    }
+    
+  
+ const numerationPageLocation = () => {
+
+   if(numInitLocation.toString().length === 2 || numInitLocation.toString().length === 1){
+     numPagesLocations = Number(numInitLocation.toString().slice(0,1)) + 1
+    
+   } else {
+      numPagesLocations = Number(numInitLocation.toString().slice(0,2)) + 1
+     
+   }
+   $numPageLocations.value = numPagesLocations
+ }
+
+
+
+ const firstPageLocation = () =>{
+   numInitLocation = 0
+   numFinalLocation = numInitLocation + 9
+   loadDataLocations("https://rickandmortyapi.com/api/location/")
+   numerationPageLocation()
+ }
+
+ const lastPageLocation = () => {
+   numInitLocation = totalElementsLocation -1 - elementResto
+   numFinalLocation = totalElementsLocation -1
+   loadDataLocations("https://rickandmortyapi.com/api/location/")
+   numerationPageLocation()
+ }
+
+ const nextPageLocation = () => {
+  
+   if(numFinalLocation === totalElementsLocation - 1 - elementResto){
+      numInitLocation = numInitLocation + 10;
+      numFinalLocation = numFinalLocation + elementResto;
+      loadDataLocations("https://rickandmortyapi.com/api/location/")
+    } else if(numFinalLocation < totalElementsLocation - elementResto - 1){ 
+      numInitLocation = numInitLocation + 10;
+      numFinalLocation = numFinalLocation + 10;
+      loadDataLocations("https://rickandmortyapi.com/api/location/")
+    } 
+    numerationPageLocation()
+    
+ }
+
+ const previousPageLocation = () => {
+   
+   if(numFinalLocation === totalElementsLocation - 1){ 
+         numInitLocation = numInitLocation - 10;
+         numFinalLocation = numFinalLocation - 6;
+         loadDataLocations("https://rickandmortyapi.com/api/location/")
+       } else if(numInitLocation > 0){
+         numInitLocation = numInitLocation - 10;
+         numFinalLocation = numFinalLocation - 10;
+         loadDataLocations("https://rickandmortyapi.com/api/location/")
+       }
+       
+       numerationPageLocation()
+   
+ }
+
+ 
+ const optionPaintLocation = (value, array) => {
+   
+   if(value === "z-a"){
+      arrayOrder = sortZA(array)
+   } else{
+      arrayOrder = sortAZ(array)
+   }
+  
+   return arrayOrder
+ } 
+
+
+
+
+const loadDataLocations = async(url) => {
+   
+      $errorsLocations.classList.add("display");
+      locationsInfo = [] 
+      arrayLocation = []
+      try{
+         const response = await fetch(`${url}${pagesLocation}${searchLocation}`)
+         const data = await response.json()
+
+         countLocations = data.info.count
+         
+
+         for(i = 1 ;i <= data.info.pages ; i++){
+            arrayLocation.push(fetch(`https://rickandmortyapi.com/api/location?page=${i}`))
+         }
+         
+         const info = await Promise.all(arrayLocation)
+         const dataArray = await Promise.all(info.map(location => location.json()))
+     
+         
+
+         $optionLocations.innerHTML = `<option value="all">Todos</option>`
+         $viewLocationsBox.innerHTML = "",
+        
+         dataArray.forEach( page => {
+            for(const elem of page.results) {
+               addOptionSelectLocation(elem);
+               locationsInfo.push(elem)
+               // paintPages(data.info.count, elem);
+               }})
+               
+         paintPages(data.info.count, optionPaintLocation(valueOrder, locationsInfo))
+
+         
+
+         const $$viewLocation = $$(".viewLocation");
+   
+         $$viewLocation.forEach(elem => elem.addEventListener("click", (e) => {
+            location = elem.id.slice(8,11)
+            loadDataCharactersLocation()
+            $modalLocations.classList.remove("display")
+            }))
+
+         } catch (error) {
+            // $errorsLocations.classList.remove("display");
+         }
+}
+
+
+const inputPaginationLocations = (value) => {
+ 
+   let totalCountPages = Math.ceil((countLocations -1) / 10)
+  
+       if( value === 1){
+         numInitLocation = 0
+         numFinalLocation = 9
+         loadDataLocations("https://rickandmortyapi.com/api/location/")
+       }
+      if(value !== 1 && value !== totalCountPages){
+         numInitLocation = Number(`${value - 1}${+ 0}`)
+         numFinalLocation = Number(`${value - 1}${+ 0}`) + 9
+         loadDataLocations("https://rickandmortyapi.com/api/location/")
+      }
+      if(value === totalCountPages){
+         numInitLocation = Number(`${value - 1}${+ 0}`);
+         numFinalLocation = countLocations -1;
+         loadDataLocations("https://rickandmortyapi.com/api/location/")
+      }
+     
+ }
+
+
+   const searchLocations = async () => {
+      valueInputs()
+      if(valueLocations !== "all" ){ 
+      try{
+         const response = await fetch(`${valueLocations}`)
+         const data = await response.json()
+         $viewLocationsBox.innerHTML = "",
+         paintCardLocation(data);
+         $errorsLocation.classList.add("display");
+
+      } catch (error) {
+         $errorsLocation.classList.remove("display");
+      }
+     } else {
+      loadDataLocations("https://rickandmortyapi.com/api/location/")
+     }
+    }
  
     const loadData = () => { 
         loadDataCharacters("https://rickandmortyapi.com/api/character/");
         loadDataEpisodes();
+        loadDataLocations("https://rickandmortyapi.com/api/location/");
     }
 
     loadData();
@@ -541,6 +832,11 @@ const desingEpisode = (episode) => {
     $optionCharacters.addEventListener("change", (e) => {
         valueInputs();
         charactersStatus(valueStatus);
+    })
+
+    $selectOrder.addEventListener("change", (e) => {
+        valueInputs();
+        loadDataLocations("https://rickandmortyapi.com/api/location/");
     })
 
     // -- Sections pages--
@@ -626,6 +922,37 @@ const desingEpisode = (episode) => {
   
     $numPageEpisodes.addEventListener("change", (e) => {
         paginationEpisodes();
+    })
+
+    // --- SECTION LOCATION  ---
+
+    //  -- BTN Pages Locations -- 
+
+   $nextPageLocations.addEventListener("click", (e) => {
+      nextPageLocation();
+   })
+
+   $previousPageLocations.addEventListener("click", (e) => {
+      previousPageLocation();
+   })
+ 
+   $numPageLocations.addEventListener("change", (e) => {
+      inputPaginationLocations($numPageLocation.value);
+   })
+
+   $firstPageLocations.addEventListener("click", (e) => {
+      firstPageLocation();
+   })
+
+   $lastPageLocations.addEventListener("click", (e) => {
+      lastPageLocation();
+   })
+
+
+    // - Modal - 
+
+    $btnCloseLocation.addEventListener("click" , (e) => {
+        $modalLocations.classList.add("display")
     })
   
 })
