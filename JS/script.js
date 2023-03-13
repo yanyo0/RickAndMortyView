@@ -54,7 +54,30 @@ window.addEventListener("load", (e) => {
 
      // --Section Episodes--
 
-    const $sectionEpisodes = $(".sectionEpisodes")
+    const $sectionEpisodes = $(".sectionEpisodes");
+    const $errorsEpisodes = $(".errors-episodes");
+    const $viewSeasons = $(".viewSeasons");
+    const $episodesViewSeasons = $("#episodes-viewSeasons")
+    const $season1 = $("#season1");
+    const $season2 = $("#season2");
+    const $season3 = $("#season3");
+    const $season4 = $("#season4");
+    const $season5 = $("#season5");
+    const $season6 = $("#season6");
+    const $season1Pages = $(".page-Season1");
+    const $season2Pages = $(".page-Season2");
+    const $season3Pages = $(".page-Season3");
+    const $season4Pages = $(".page-Season4");
+    const $season5Pages = $(".page-Season5");
+    const $season6Pages = $(".page-Season6");
+    const $modalEpisodes = $(".modalEpisodes");
+    const $paintModalEpisodes = $(".paint-modalEpisodes");
+    const $numPageEpisodes = $("#numPage-episodes")
+
+    let arrayEpisodes = [];
+    let pagesEpisode = 1
+    let episode = ""
+    let searchNameEpisode = ""
 
       // --Section Locations--
  
@@ -182,7 +205,7 @@ const pagination = (data) => {
        `;
     } catch (error) {
        $paintModalCharacter.innerHTML = `
-       <article class="errors errors-characters display">
+       <article class="errors">
                 <i class="fa-solid fa-circle-exclamation"></i>
                 <p>No se pudo mostrar el contenido!</p> 
                 <p>Intente cargar la pagina nuevamente</p>
@@ -264,10 +287,236 @@ const loadNextPageCharacters =() => {
        }
     }
  
+
+    
+// -----  SECTION EPISODES  -----    
+
+const desingEpisode = (episode) => {
+    return episode.slice(0,3)
+}
+
  
+ const paintEpisodes = (elem) => {
+    if(desingEpisode(elem.episode) === "S01"){
+       $season1.innerHTML += `
+           <tr>
+               <td>${elem.name}</td>
+               <td>${elem.air_date}</td>
+               <td>${elem.created}</td>
+               <td>${elem.episode}</td>
+               <td class="view viewEpisode" id="${elem.id}">Ver +</td>
+           </tr>
+       `}
+    if(desingEpisode(elem.episode) === "S02"){
+       $season2.innerHTML += `
+           <tr>
+               <td>${elem.name}</td>
+               <td>${elem.air_date}</td>
+               <td>${elem.created}</td>
+               <td>${elem.episode}</td>
+               <td class="view viewEpisode" id="${elem.id}">Ver +</td>
+           </tr>
+       `}
+    if(desingEpisode(elem.episode) === "S03"){
+       $season3.innerHTML += `
+           <tr>
+               <td>${elem.name}</td>
+               <td>${elem.air_date}</td>
+               <td>${elem.created}</td>
+               <td>${elem.episode}</td>
+               <td class="view viewEpisode" id="${elem.id}">Ver +</td>
+           </tr>
+       `}
+    if(desingEpisode(elem.episode) === "S04"){
+           $season4.innerHTML += `
+               <tr>
+                   <td>${elem.name}</td>
+                   <td>${elem.air_date}</td>
+                   <td>${elem.created}</td>
+                   <td>${elem.episode}</td>
+                   <td class="view viewEpisode" id="${elem.id}">Ver +</td>
+               </tr>
+           `}
+    if(desingEpisode(elem.episode) === "S05"){
+       $season5.innerHTML += `
+          <tr>
+                <td>${elem.name}</td>
+                <td>${elem.air_date}</td>
+                <td>${elem.created}</td>
+                <td>${elem.episode}</td>
+                <td class="view viewEpisode" id="${elem.id}">Ver +</td>
+          </tr>
+       `}
+    if(desingEpisode(elem.episode) === "S06"){
+          $season6.innerHTML += `
+                <tr>
+                   <td>${elem.name}</td>
+                   <td>${elem.air_date}</td>
+                   <td>${elem.created}</td>
+                   <td>${elem.episode}</td>
+                   <td class="view viewEpisode" id="${elem.id}">Ver +</td>
+                </tr>
+          `}
+ 
+ }
+ 
+ 
+ 
+ const loadDataCharactersEpisode = async() => {
+    try{
+       const respose = await fetch(`https://rickandmortyapi.com/api/episode/${episode}`)
+       const data = await respose.json()
+      
+       const arrayFetch = data.characters.map(character => fetch(character))
+       
+       const promeseAll = await Promise.all(arrayFetch)
+       
+       const info = await Promise.all(promeseAll.map(character =>character.json()))
+       
+       paintCharacters(info, $paintModalEpisodes);
+ 
+    }
+    catch(error){
+        $paintModalEpisodes.innerHTML = `
+        <article class="errors">
+                <i class="fa-solid fa-circle-exclamation"></i>
+                <p>No se pudo mostrar el contenido!</p> 
+                <p>Intente cargar la pagina nuevamente</p>
+        </article>
+        `
+    }
+ }
+ 
+
+ const loadDataEpisodes = async() => {
+    try{
+       const response = await fetch(`https://rickandmortyapi.com/api/episode/${searchNameEpisode}`)
+       const data = await response.json()
+ 
+       for(i = 1 ;i <= data.info.pages ; i++){
+          arrayEpisodes.push(fetch(`https://rickandmortyapi.com/api/episode?page=${i}`))
+       }
+ 
+       const info = await Promise.all(arrayEpisodes)
+       const dataArray = await Promise.all(info.map(ep => ep.json()))
+ 
+       dataArray.forEach( page => {
+        console.log(page)
+          for(const elem of page.results) {
+             paintEpisodes(elem)
+             }})
+ 
+       const $$viewEpisode = $$(".viewEpisode");
+ 
+       $$viewEpisode.forEach(elem => elem.addEventListener("click", (e) => {
+          episode = elem.id
+          loadDataCharactersEpisode()
+          $modalEpisodes.classList.remove("display")
+          } ))
+ 
+       } catch (error) {
+        $errorsEpisodes.classList.remove("display")
+       }
+ 
+   }
+ 
+ 
+ const episodePagesClassList = () => {
+    if(pagesEpisode === 1){
+       $season1Pages.classList.remove("display");
+       $season2Pages.classList.add("display");
+       $season3Pages.classList.add("display");
+       $season4Pages.classList.add("display");
+       $season5Pages.classList.add("display");
+       $season6Pages.classList.add("display");
+    }
+    if(pagesEpisode === 2){
+       $season1Pages.classList.add("display");
+       $season2Pages.classList.remove("display");
+       $season3Pages.classList.add("display");
+       $season4Pages.classList.add("display");
+       $season5Pages.classList.add("display");
+       $season6Pages.classList.add("display");
+    }
+    if(pagesEpisode === 3){
+       $season1Pages.classList.add("display");
+       $season2Pages.classList.add("display");
+       $season3Pages.classList.remove("display");
+       $season4Pages.classList.add("display");
+       $season5Pages.classList.add("display");
+       $season6Pages.classList.add("display");
+    }
+    if(pagesEpisode === 4){
+       $season1Pages.classList.add("display");
+       $season2Pages.classList.add("display");
+       $season3Pages.classList.add("display");
+       $season4Pages.classList.remove("display");
+       $season5Pages.classList.add("display");
+       $season6Pages.classList.add("display");
+    }
+    if(pagesEpisode === 5){
+       $season1Pages.classList.add("display");
+       $season2Pages.classList.add("display");
+       $season3Pages.classList.add("display");
+       $season4Pages.classList.add("display");
+       $season5Pages.classList.remove("display");
+       $season6Pages.classList.add("display");
+    }
+    if(pagesEpisode === 6){
+       $season1Pages.classList.add("display");
+       $season2Pages.classList.add("display");
+       $season3Pages.classList.add("display");
+       $season4Pages.classList.add("display");
+       $season5Pages.classList.add("display");
+       $season6Pages.classList.remove("display");
+    }
+    $numPageEpisodes.value = pagesEpisode;
+ }
+ 
+ const selecCardSeason = (page) => {
+    $viewSeasons.classList.add("display");
+    $episodesViewSeasons.classList.remove("display");
+    pagesEpisode = page
+    episodePagesClassList();
+ }
+ 
+   const loadNextPageEpisodes =() => {
+    if(pagesEpisode + 1 <= 6 ){
+       pagesEpisode = pagesEpisode + 1;
+      episodePagesClassList()
+    }}
+ 
+ const loadLastPageEpisodes = () => {
+    if(pagesEpisode !== 6){
+     pagesEpisode = 6
+     episodePagesClassList()
+    }
+    }
+ 
+ 
+ const loadPreviousPageEpisodes = () => {
+    if(pagesEpisode - 1 > 0 ){
+       pagesEpisode = pagesEpisode - 1;
+      episodePagesClassList()
+    }
+    }
+ 
+ const loadfirstpageEpisodes = () => {
+    if(pagesEpisode !== 1){
+    pagesEpisode = 1;
+    episodePagesClassList();
+    }
+ }
+ 
+ const paginationEpisodes = () => {
+    pagesEpisode = Number($numPageEpisodes.value);
+ 
+    episodePagesClassList();
+ }
  
     const loadData = () => { 
-        loadDataCharacters("https://rickandmortyapi.com/api/character/")
+        loadDataCharacters("https://rickandmortyapi.com/api/character/");
+        loadDataEpisodes();
     }
 
     loadData();
@@ -303,6 +552,8 @@ const loadNextPageCharacters =() => {
 
    // --SECTION CHARACTERS --
 
+    //  -- BTN Page Chatacters -- 
+
     $firstPageCharacters.addEventListener("click" , (e) => {
         loadfirstpageCharacters()
     })
@@ -328,4 +579,53 @@ const loadNextPageCharacters =() => {
     $btnCloseCharacters.addEventListener("click", (e) => {
         $modalCharacters.classList.add("display")
     })
+
+    // SECTION EPISODES
+
+    $(".cardSeason1").addEventListener("click", (e) => {
+        selecCardSeason(1)
+    });
+  
+    $(".cardSeason2").addEventListener("click", (e) => {
+        selecCardSeason(2)
+    });
+  
+    $(".cardSeason3").addEventListener("click", (e) => {
+        selecCardSeason(3)
+    });
+  
+    $(".cardSeason4").addEventListener("click", (e) => {
+        selecCardSeason(4)
+    });
+  
+    $(".cardSeason5").addEventListener("click", (e) => {
+        selecCardSeason(5)
+    });
+  
+    $(".cardSeason6").addEventListener("click", (e) => {
+        selecCardSeason(6)
+    })
+
+    // -- BTN Page Episode
+
+    $("#firstPage-episodes").addEventListener("click", (e) => {
+        loadfirstpageEpisodes();
+    });
+
+    $("#previousPage-episodes").addEventListener("click", (e) => {
+        loadPreviousPageEpisodes();
+    });
+
+    $("#nextPage-episodes").addEventListener("click", (e) => {
+        loadNextPageEpisodes();
+    });
+  
+    $("#lastPage-episodes").addEventListener("click", (e) => {
+        loadLastPageEpisodes();
+    });
+  
+    $numPageEpisodes.addEventListener("change", (e) => {
+        paginationEpisodes();
+    })
+  
 })
